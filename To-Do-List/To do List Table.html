@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>To Do List Table</title>
+		<link href="todolist.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<h1 align="center">To Do List</h1>
+		<center>
+		<input type="text" id="box" class="input1">
+		<button id="btn">+</button>
+		<br>
+		<br>
+		<table id="table" class="table"> 
+		<thead>
+		<tr>
+		<th width="50px" align="left">SrNo.</th>
+		<th width="50px" align="left">Task</th>
+		<th width="50px" align="left">Date</th>
+		<th width="50px" align="left">Delete</th>
+		<th width="50px" align="left">Edit</th>
+		</tr>
+		</thead>
+		<tbody id="tbody">
+		</tbody>
+		</table>
+	</body> 
+    <script>
+	    var input = document.getElementById("box");
+		var button = document.getElementById("btn");
+		var parent = document.getElementById("tbody");
+		var array=[];
+		var date=[];
+		button.onclick=function()
+		{
+		    if(input.value=="")
+		    {
+       			alert("Enter value");
+	        }
+			else 
+			{
+				array.push(input.value);
+				generateDate();
+				input.value="";
+			    rowgenrator();
+			}
+        }
+		function rowgenrator()
+		{
+		    parent.innerHTML="";
+			for(var i=0;i<array.length;i++)
+			{
+			    var row = document.createElement("tr");
+				row.setAttribute("id",i);
+		        var col = document.createElement("td");
+				col.innerHTML=i+1;
+		    	var col1 = document.createElement("td");
+				col1.innerHTML=array[i];
+				var col2 = document.createElement("td");
+				col2.innerHTML=date[i];
+				var col3 = document.createElement("td");
+				var btn = document.createElement("button");
+				btn.setAttribute("id","btn1");
+				btn.innerHTML= "X";  
+				col3.appendChild(btn);
+				var col4 = document.createElement("td");
+				var btn1 = document.createElement("button");
+				btn1.setAttribute("id","btn2");
+				btn1.innerHTML= "Edit";  
+				col4.appendChild(btn1);
+				parent.appendChild(row);
+				row.appendChild(col);	
+				row.appendChild(col1);
+				row.appendChild(col2);
+				row.appendChild(col3);
+				row.appendChild(col4);
+				btn.addEventListener("click",function(e)
+			    {
+					array.splice(e.target.parentNode.parentNode.id,1);
+					rowgenrator();
+				});
+				btn1.addEventListener("click",function(e)
+				{
+					emptyTable();
+					editContent(e);
+				});
+				parent.appendChild(row);
+			}
+		}
+		function emptyTable()
+		{
+			var childNodes = parent.childNodes;
+			for (var i = 0; childNodes.length > 0;)
+			{
+				parent.removeChild(childNodes[i]);
+			}
+		}
+		function editContent(e)
+		{
+			input.value=array[e.target.parentNode.parentNode.id];
+			button.onclick=function()
+			{
+				array[e.target.parentNode.parentNode.id]=input.value;
+				var time = new Date();
+				date[e.target.parentNode.parentNode.id]=time;
+				input.value="";
+			    rowgenrator();
+			}
+		}
+		function generateDate()
+		{
+			var time = new Date();
+			date.push(time);
+		}
+	</script>
+</html>

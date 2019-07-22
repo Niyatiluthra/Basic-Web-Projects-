@@ -1,0 +1,32 @@
+.input1
+{
+	color: antiquewhite;
+    background-color: darkseagreen;
+    font-family: bakery;
+	font-size: 20px;
+}
+#btn
+{
+    padding: 7px;
+    background: #7cc593;
+}
+.table
+{
+	font-family: bakery;
+	font-size: 20px;
+}
+h1
+{
+	color : #330033;
+	font-family:CF Expedition;
+}
+body
+{
+	background-image: url("todolist.jpeg");
+}
+#btn1,#btn2
+{
+	background: #7cc593;
+	font-family: bakery;
+	font-weight: bold;
+}

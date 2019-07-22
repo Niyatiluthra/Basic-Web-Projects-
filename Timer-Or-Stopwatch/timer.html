@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timers</title>
+    </head>
+    <style>
+        .btn
+        {
+            padding: 12px;
+            background: #7cc593;
+            font-family: bakery;
+        }
+        #btn1
+        {
+            margin-left: 450px;
+            
+        }
+        #btn1,#btn2,#btn3
+        {
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 20px;
+        }
+        body
+        {
+            background-image: url(timer.jpg);
+        }
+        input
+        {
+            margin-top: 240px;
+            margin-left: 500px;
+        }
+    </style>
+    <body>
+        <input id="input" class="btn">
+        <br>
+        <br>
+        <button id="btn1" class="btn">Start</button>
+        <button id="btn2" class="btn">Pause</button>
+        <button id="btn3" class="btn">Reset</button>
+    </body>
+    <script>
+        var input = document.getElementById("input");
+        var start = document.getElementById("btn1");
+        var pause = document.getElementById("btn2");
+        var reset = document.getElementById("btn3");
+        var time = input.value;
+        
+        
+        start.addEventListener("click",function(){
+           var interval = setInterval(function(){
+               input.value--;
+               if(input.value<=0)
+               {
+                   clearInterval(interval);
+                   alert("TIME OVER!!!!!");
+               }
+           }, 1000);
+        
+        pause.addEventListener("click",function(){
+            clearInterval(interval);
+        });
+
+        reset.addEventListener("click",function(){
+            clearInterval(interval);
+            input.value = 0;
+        });
+       });
+    </script>
+</html>
